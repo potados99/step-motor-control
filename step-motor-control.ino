@@ -10,7 +10,8 @@
 
 void main_routine() {
 
-  for (unsigned register int i = 1; i < _MAX_SPEED; i += 1) {
+ /*
+  for (unsigned register int i = 100; i < _MAX_SPEED; i += 1) {
     rotate(0.01, i, _ROTATION_CCW);
   }
 
@@ -23,12 +24,17 @@ void main_routine() {
   for (unsigned register int i = _MAX_SPEED - 600; i > 300 ; i -= 100) {
     rotate(1, i, (i/100) % 2);
   }
- 
+*/
 
   for (unsigned register int i = 0; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 4000, _c_scale()[i], _ROTATION_CCW);
+    rotate((double)_low_c_scale()[i] / 4000, _low_c_scale()[i], _ROTATION_CCW);
   }
   
+  for (unsigned register int i = 1; i < 8; ++ i) {
+    rotate((double)_c_scale()[i] / 4000, _c_scale()[i], _ROTATION_CCW);
+  }
+
+
 }
 
 
@@ -82,4 +88,11 @@ int *_c_scale() {
   static int scale[] = {262, 294, 330, 349, 392, 440, 494, 523};
   return scale;
 }
+
+int *_low_c_scale() {
+  static int scale[] = {131, 147, 165, 175, 196, 220, 247, 262};
+  return scale;
+}
+
+
 
