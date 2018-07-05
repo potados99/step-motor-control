@@ -9,36 +9,9 @@
 
 
 void main_routine() {
-/*
-  for (unsigned register int i = 100; i < _MAX_SPEED; i += 1) {
-    rotate(0.01, i, _ROTATION_CCW);
-  }
+  test_acceleration();
 
-  for (unsigned register int i = _MAX_SPEED; i >= 1000; i -= 1) {
-    rotate(0.01, i, _ROTATION_CCW);
-  }
-  
-  delay(500);
-  for (unsigned register int i = _MAX_SPEED - 600; i > 300 ; i -= 100) {
-    rotate(1, i, (i/100) % 2);
-  }
-*/
-
-  for (unsigned register int i = 0; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 16000, _c_scale()[i] / 4, _ROTATION_CCW);
-  }
-
-  for (unsigned register int i = 0; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 8000, _c_scale()[i] / 2, _ROTATION_CCW);
-  }
-  
-  for (unsigned register int i = 1; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 4000, _c_scale()[i], _ROTATION_CCW);
-  }
-  
-  for (unsigned register int i = 1; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 2000, _c_scale()[i] * 2, _ROTATION_CCW);
-  }
+  test_scale();
 
   //bnn();
 
@@ -102,6 +75,36 @@ int *_low_c_scale() {
 }
 
 
+void test_acceleration() {
+  for (unsigned register int i = 100; i < _MAX_SPEED; i += 1) {
+    rotate(0.01, i, _ROTATION_CCW);
+  }
+
+  for (unsigned register int i = _MAX_SPEED; i >= 100; i -= 1) {
+    rotate(0.01, i, _ROTATION_CCW);
+  }
+}
+
+void test_scale() {
+  for (unsigned register int i = 0; i < 8; ++ i) {
+    rotate((double)_c_scale()[i] / 16000, _c_scale()[i] / 4, _ROTATION_CCW);
+  }
+
+  for (unsigned register int i = 0; i < 8; ++ i) {
+    rotate((double)_c_scale()[i] / 8000, _c_scale()[i] / 2, _ROTATION_CCW);
+  }
+  
+  for (unsigned register int i = 1; i < 8; ++ i) {
+    rotate((double)_c_scale()[i] / 4000, _c_scale()[i], _ROTATION_CCW);
+  }
+  
+  for (unsigned register int i = 1; i < 8; ++ i) {
+    rotate((double)_c_scale()[i] / 2000, _c_scale()[i] * 2, _ROTATION_CCW);
+  }
+}
+
+
+
 
 void bnn() {
   
@@ -124,9 +127,7 @@ void bnn() {
     }
     
   }
-  rotate((double)_c_scale()[7] / 1000, _c_scale()[7], _ROTATION_CCW);
-
-  
+  rotate((double)_c_scale()[7] / 1000, _c_scale()[7], _ROTATION_CCW);  
 }
 
 inline void bnn_unit(int note) {
@@ -144,6 +145,5 @@ inline void bnn_unit(int note) {
    rotate((double)note / 2000, note, _ROTATION_CCW);
    delay(1);
    rotate((double)note / 1000, note, _ROTATION_CCW);
-
 }
 
