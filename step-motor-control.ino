@@ -18,23 +18,6 @@ typedef enum _Mode {
   HALF_STEP = 3
 } Mode;
 
-
-/*
-mode
-0   1   2   3
-
-step
-1/16 1/8   1/4   1/2
-
-2^-(4-0) 2^-(4-1) 2^-(4-2) 2*-(4-3)
-
-
-
-
-16  8   4   0.5
-
-
-*/
 typedef enum _Direction {
   RIGHT = 0,
   LEFT
@@ -59,7 +42,6 @@ void loop() {
   ++ _count;
 }
 
-
 void main_routine() {
   //test_acceleration(3600, 14400, RIGHT);
 
@@ -72,10 +54,6 @@ void main_routine() {
   //rotate(30, 2000, 0);
 
 }
-
-
-
-
 
 
 void init_pins() {
@@ -106,8 +84,6 @@ void set_mode(Mode _mode) {
 
   CLKS_PER_STEP = pow(2, 4 - _mode);
 }
-
-
 
 
 void rotate(double _rotations, double _speed, Direction _direction) {
@@ -153,32 +129,4 @@ void test_acceleration(int _minSpeed, int _maxSpeed, int _direction) {
   for (unsigned register int i = _maxSpeed; i >= _minSpeed; i -= 1) {
     rotate(0.01, i, _direction);
   }
-}
-
-void test_scale() {
-  for (unsigned register int i = 0; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 16000, _c_scale()[i] / 4, LEFT);
-  }
-
-  for (unsigned register int i = 0; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 8000, _c_scale()[i] / 2, LEFT);
-  }
-  
-  for (unsigned register int i = 1; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 4000, _c_scale()[i], LEFT);
-  }
-  
-  for (unsigned register int i = 1; i < 8; ++ i) {
-    rotate((double)_c_scale()[i] / 2000, _c_scale()[i] * 2, LEFT);
-  }
-}
-
-int *_c_scale() {
-  static int scale[] = {262, 294, 330, 349, 392, 440, 494, 523};
-  return scale;
-}
-
-int *_low_c_scale() {
-  static int scale[] = {131, 147, 165, 175, 196, 220, 247, 262};
-  return scale;
 }
